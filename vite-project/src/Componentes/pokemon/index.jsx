@@ -1,41 +1,34 @@
-import { useState,useEffect} from 'react'
+import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"; 
-import './style.css'
+import './style.css';
 
-function Pokemon() {
-  const { name } = useParams(); 
-  const [datapoke, setDatapoke] = useState([]);
+function Producto() {
+  const { id } = useParams(); 
+  const [producto, setProducto] = useState(null);
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    fetch(`https://api.escuelajs.co/api/v1/products/${id}`)
       .then(response => response.json())
-      .then(responseData => setDatapoke(responseData))
+      .then(responseData => setProducto(responseData))
       .catch(error => console.error("Error:", error));
-  }, [name]); 
+  }, [id]); 
 
-  if (!datapoke || !datapoke.id) return <p>Cargando...</p>;
+  if (!producto) return <p>Cargando...</p>;
+
   return (
-    <div className={datapoke.types[0].type.name}>
+    <div className="producto-detalle">
       <img 
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${datapoke.id}.png`} 
-        alt={datapoke.name} 
+        src={producto.images?.[0]} 
+        alt={producto.title} 
         width="200"
       />
 
-        <p>{datapoke.name}</p>
-        {datapoke.types && (
-          <p>Tipo(s): {datapoke.types.map(t => t.type.name).join(', ')}</p>
-        )}
-        <p>{datapoke.id}</p>
-        <p>Altura: {datapoke.height/ 10} m / Peso: {datapoke.weight/ 10} kg</p>
-
-        <p>hp: {datapoke.stats[0].base_stat}</p>
-        <p>Velocidad: {datapoke.stats[5].base_stat}</p>
-        <p>Ataque: {datapoke.stats[1].base_stat} Defensa: {datapoke.stats[2].base_stat}</p>
-        <p>Ataque Especial: {datapoke.stats[3].base_stat} Defensa Especial: {datapoke.stats[4].base_stat}</p>
-    
+      <p><strong>Nombre:</strong> {producto.title}</p>
+      <p><strong>Categoría:</strong> {producto.category?.name}</p>
+      <p><strong>Precio:</strong> ${producto.price}</p>
+      <p><strong>Descripción:</strong> {producto.description}</p>
     </div>
   );
 }
 
-export default Pokemon
+export default Producto;

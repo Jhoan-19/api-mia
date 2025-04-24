@@ -23,7 +23,7 @@ function App() {
   <Route path="/aleatorios" element={<Aleatorios />} />
   <Route path="/capturados" element={<Capturados />} />
   <Route path="/favoritos" element={<Favoritos />} />
-  <Route path="/pokemon/:name" element={<Pokemon />} />
+  <Route path="/producto/:id" element={<Pokemon />} />
 </Routes>
 
 </Router>

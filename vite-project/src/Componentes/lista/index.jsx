@@ -1,11 +1,10 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import Filtro from '../filtro';
 import { useNavigate } from "react-router-dom";
 
-import './style.css'
+import './style.css';
 
 function Lista() {
-  
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [tipoSeleccionado, setTipoSeleccionado] = useState('All');
@@ -13,15 +12,16 @@ function Lista() {
 
   useEffect(() => {
     const obtenerDatos = async () => {
-      if (tipoSeleccionado === 'All') {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${1025}`);
-        const json = await res.json();
-        setData(json.results);
+      const res = await fetch('https://api.escuelajs.co/api/v1/products');
+      const json = await res.json();
+
+      if (tipoSeleccionado.toLowerCase() === 'all') {
+        setData(json);
       } else {
-        const res = await fetch(`https://pokeapi.co/api/v2/type/${tipoSeleccionado}`);
-        const json = await res.json();
-        const listaFiltrada = json.pokemon.map(p => p.pokemon);
-        setData(listaFiltrada);
+        const filtrados = json.filter(producto =>
+          producto.category.name.toLowerCase() === tipoSeleccionado.toLowerCase()
+        );
+        setData(filtrados);
       }
     };
 
@@ -32,48 +32,51 @@ function Lista() {
     setTipoSeleccionado(tipo);
   };
 
-  let resultados=data;
+  let resultados = data;
 
-  if (!isNaN(busqueda)) {
-    resultados = data.filter(pokemon =>
-      pokemon.url.includes('/' + busqueda)
-    );
+  if (busqueda.length >= 2) {
+    if (!isNaN(busqueda)) {
+      // Buscar por ID si es número
+      const busquedaId = parseInt(busqueda);
+      resultados = data.filter(producto => producto.id === busquedaId);
+    } else {
+      // Buscar por título si es texto
+      resultados = data.filter(producto =>
+        producto.title.toLowerCase().includes(busqueda.toLowerCase())
+      );
+    }
   }
-
-  if (busqueda.length >= 2 && isNaN(busqueda)) {
-    resultados = data.filter(pokemon =>
-      pokemon.name.toLowerCase().includes(busqueda.toLowerCase())
-    );
-  }
-
 
   return (
     <>
-     <input
+      <input
         type="text"
-        placeholder="Buscar Pokémon"
+        placeholder="Buscar producto"
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
         className="c-buscador"
       />
-    <Filtro onTipoChange={handleTipoChange} />
 
-    <section className='c-lista'>
-    {resultados.map((pokemon, index) => (
-      <div className='c-lista-pokemon'
-      onClick={() => navigate(`/pokemon/${pokemon.name}`)}
-      key={index}>
-        <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.url.split("/")[6]}.png`} 
-              alt={`Pokémon ${pokemon.name}`} width='auto' height='60' loading='lazy'
+      <Filtro onTipoChange={handleTipoChange} />
+
+      <section className='c-lista'>
+        {resultados.map((producto, index) => (
+          <div className='c-lista-pokemon'
+            onClick={() => navigate(`/producto/${producto.id}`)}
+            key={index}>
+            <img
+              src={producto.images[0]}
+              alt={`Producto ${producto.title}`}
+              width='auto'
+              height='60'
+              loading='lazy'
             />
-        <p>{pokemon.name}</p>
-      </div>
-    ))}
-  </section>
-
-  </>
-
-  )
+            <p>{producto.title}</p>
+          </div>
+        ))}
+      </section>
+    </>
+  );
 }
 
-export default Lista
+export default Lista;
