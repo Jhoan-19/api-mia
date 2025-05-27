@@ -1,0 +1,6 @@
+// Ejemplo de uso en tu componente de usuarios
+return (
+  <div className="usuario-perfil">
+    {/* ...resto del contenido... */}
+  </div>
+);

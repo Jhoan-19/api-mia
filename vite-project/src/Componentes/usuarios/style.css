@@ -1,0 +1,81 @@
+.usuario-perfil {
+  background: #f3f6fa;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px #0002;
+  max-width: 500px;
+  margin: 40px auto 0 auto;
+  padding: 32px 28px;
+  color: #222;
+}
+
+.usuario-perfil label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #1a237e;
+}
+
+.usuario-perfil input[type="text"],
+.usuario-perfil input[type="email"],
+.usuario-perfil input[type="date"],
+.usuario-perfil input[type="tel"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #b0bec5;
+  border-radius: 6px;
+  background: #fff;
+  color: #222;
+  font-size: 15px;
+}
+
+.usuario-perfil button {
+  background: #1a237e;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.usuario-perfil button:hover {
+  background: #3949ab;
+}
+
+.usuario-perfil hr {
+  border: none;
+  border-top: 1px solid #b0bec5;
+  margin: 24px 0;
+}
+
+.usuario-perfil ul {
+  list-style: none;
+  padding: 0;
+}
+
+.usuario-perfil li {
+  margin-bottom: 18px;
+}
+
+.usuario-perfil img {
+  border-radius: 8px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  background: #e3eafd;
+  box-shadow: 0 1px 8px #0001;
+}
+
+@media (max-width: 600px) {
+  .usuario-perfil {
+    padding: 18px 8px;
+  }
+  .usuario-perfil img {
+    width: 90px;
+    height: 90px;
+  }
+}

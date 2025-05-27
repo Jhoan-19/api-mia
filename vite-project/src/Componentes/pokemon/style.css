@@ -1,28 +1,29 @@
 .producto-detalle {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 24px;
-  display: flex;
-  gap: 32px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap;
-  align-items: flex-start;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px #0002;
+  max-width: 420px;
+  margin: 40px auto 0 auto;
+  padding: 32px 28px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .producto-detalle img {
-  width: 300px;
-  max-height: 300px;
+  width: 180px;
+  height: 180px;
   object-fit: contain;
-  border-radius: 10px;
-  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #f3f6fa;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 8px #0001;
 }
 
 .producto-detalle p {
   margin: 10px 0;
   font-size: 16px;
-  color: #333;
+  color: #222;
 }
 
 .producto-detalle strong {
@@ -30,21 +31,31 @@
 }
 
 .btn-favorito {
-  background: #e0e0e0;
-  color: #333;
+  background: #e3eafd;
+  color: #1a237e;
   border: none;
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
   margin-top: 10px;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
 }
 
 .btn-favorito.favorito-activo {
-  background: #ffe6ec;
-  color: #e91e63;
-  cursor: default;
+  background: #1a237e;
+  color: #fff;
+}
+
+h1, h2, h3 {
+  color: #1a237e;
+  margin-bottom: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 768px) {
