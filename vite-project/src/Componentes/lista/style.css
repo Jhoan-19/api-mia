@@ -1,0 +1,27 @@
+.c-lista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+  gap: 20px;
+  padding: 20px;
+}
+
+.c-lista-pokemon {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.c-lista-pokemon:hover {
+  transform: scale(1.03);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.c-lista-pokemon img {
+  max-width: 40%;
+  height: auto;
+  border-radius: 5px;
+}
