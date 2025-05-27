@@ -1,0 +1,50 @@
+.lista-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.lista-item {
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 20px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+
+.lista-item:hover {
+  box-shadow: 0 4px 16px #0002;
+}
+
+.lista-item img {
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.btn-favorito {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-favorito.favorito-activo {
+  background: #ffe6ec;
+  color: #e91e63;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+}

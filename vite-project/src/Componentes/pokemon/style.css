@@ -29,6 +29,24 @@
   color: #111;
 }
 
+.btn-favorito {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.btn-favorito.favorito-activo {
+  background: #ffe6ec;
+  color: #e91e63;
+  cursor: default;
+}
+
 @media (max-width: 768px) {
   .producto-detalle {
     flex-direction: column;

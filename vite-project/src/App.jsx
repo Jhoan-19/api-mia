@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { supabase } from '../supabase'; // Ajusta la ruta si es necesario
+import { AppProvider } from './contexto/contexto';
 
 import Aleatorios from './Componentes/aleatorios';
 import Capturados from './Componentes/capturados';
@@ -36,20 +37,22 @@ function App() {
   if (cargando) return <p>Cargando...</p>;
 
   return (
-    <Router>
-      {usuario && <Menu />}
-      <Routes>
-        <Route path="/" element={usuario ? <Lista /> : <Navigate to="/login" />} />
-        <Route path="/usuarios" element={usuario ? <Usuario /> : <Navigate to="/login" />} />
-        <Route path="/aleatorios" element={usuario ? <Aleatorios /> : <Navigate to="/login" />} />
-        <Route path="/capturados" element={usuario ? <Capturados /> : <Navigate to="/login" />} />
-        <Route path="/favoritos" element={usuario ? <Favoritos /> : <Navigate to="/login" />} />
-        <Route path="/producto/:id" element={usuario ? <Pokemon /> : <Navigate to="/login" />} />
-        <Route path="/login" element={!usuario ? <Login /> : <Navigate to="/" />} />
-        <Route path="/registro" element={!usuario ? <Registro /> : <Navigate to="/" />} />
-        <Route path="/admin" element={usuario ? <Administrador /> : <Navigate to="/login" />} />
-      </Routes>
-    </Router>
+    <AppProvider>
+      <Router>
+        {usuario && <Menu />}
+        <Routes>
+          <Route path="/" element={usuario ? <Lista /> : <Navigate to="/login" />} />
+          <Route path="/usuarios" element={usuario ? <Usuario /> : <Navigate to="/login" />} />
+          <Route path="/aleatorios" element={usuario ? <Aleatorios /> : <Navigate to="/login" />} />
+          <Route path="/capturados" element={usuario ? <Capturados /> : <Navigate to="/login" />} />
+          <Route path="/favoritos" element={usuario ? <Favoritos /> : <Navigate to="/login" />} />
+          <Route path="/producto/:id" element={usuario ? <Pokemon /> : <Navigate to="/login" />} />
+          <Route path="/login" element={!usuario ? <Login /> : <Navigate to="/" />} />
+          <Route path="/registro" element={!usuario ? <Registro /> : <Navigate to="/" />} />
+          <Route path="/admin" element={usuario ? <Administrador /> : <Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    </AppProvider>
   );
 }
 

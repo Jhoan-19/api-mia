@@ -1,0 +1,13 @@
+.producto-favorito {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.producto-favorito:hover {
+  background: #f3f3f3;
+  cursor: pointer;
+}
